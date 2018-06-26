@@ -22,12 +22,12 @@ app.use('/course', course);
 
 // DB connection
 mongoose
-    .connect(db)
-    .then(() => console.log('MongoDB connected...'))
-    .catch(err => console.log(err));
+.connect(db)
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-    res.send('Hello world');
+  res.send('Hello world');
 });
 
 app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
