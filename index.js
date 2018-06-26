@@ -1,3 +1,5 @@
+"use strict"
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -5,8 +7,9 @@ const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3000;
 
-// body parser middleqware
+// support parsing of application/json type post data
 app.use(bodyParser.json());
+//support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({extended: false}));
 
 // mongodb config

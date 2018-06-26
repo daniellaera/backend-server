@@ -10,15 +10,15 @@ router.post('/add',(req, res) => {
         course_price: req.body.course_price
     });
     course.save().then(course => {
-        res.status(200).json({ msg: 'courses added succesyfully'});
+        res.status(200).json({ msg: 'courses added successfully'});
     })
     .catch(err => {
         res.status(400).send('unable to save the course into database');
     });
 });
 
-router.route('/').get(function (req, res) {
-    Course.find(function (err, courses){
+router.route('/').get((req, res) => {
+    Course.find((err, courses) => {
       if(err){
         console.log(err);
       }
@@ -28,8 +28,9 @@ router.route('/').get(function (req, res) {
     });
   });
 
-  router.post('/update/:id',function (req, res) {
-    Course.findById(req.params.id, function(err, course) {
+  // update course 
+  router.post('/update/:id', (req, res) => {
+    Course.findById(req.params.id, (err, course) => {
       if (!course)
         return next(new Error('Could not load Document'));
       else {
@@ -45,5 +46,16 @@ router.route('/').get(function (req, res) {
       }
     });
   });
+
+
+//delete post  
+router.delete('/:id', (req, res) => { 
+  Course.findById(req.params.id)
+  .then(course => {
+      // Delete
+      course.remove().then(() => res.json({ msg: 'successfully deleted'}));
+  })
+  .catch(err => res.status(404).json({ coursenotfound: 'No post found'}));
+});
 
 module.exports = router;
