@@ -16,9 +16,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 const db = require('./config/keys').mongoURI;
 
 const course = require('./routes/api/course');
+const users = require('./routes/api/users');
 
 // use route
 app.use('/course', course);
+app.use('/users', users);
 
 // DB connection
 mongoose
