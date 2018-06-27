@@ -61,7 +61,7 @@ router.post('/login', (req, res) => {
 
 // get current user
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json({ id: user.id, name: user.name, email: user.email });
+    res.json({ id: req.user.id, name: req.user.name, email: req.user.email });
 });
 
 router.get('/test', (req, res) => res.json({ msg: 'user works'}));

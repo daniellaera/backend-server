@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Course = require('../../models/Course');
 
-router.post('/add',(req, res) => {
+router.post('/add', (req, res) => {
   const course = new Course({
     course_name: req.body.course_name,
     course_price: req.body.course_price
@@ -16,15 +16,9 @@ router.post('/add',(req, res) => {
   });
 });
 
-router.route('/').get((req, res) => {
-  Course.find((err, courses) => {
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.json(courses);
-    }
-  });
+router.get('/', (req, res, next) => {
+  Course.find().catch(next).then(results => 
+    { res.send(results) })
 });
 
 // update course

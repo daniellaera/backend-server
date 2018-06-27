@@ -15,3 +15,12 @@ describe('/GET course', () => {
           });
     });
 });
+
+describe('create a post', () => {
+  it('should return 200', () => {
+    request(app).post('/course/add').end((err,res) => {
+      expect(res.status).to.eql(200)
+      return done();
+    })
+  });
+});

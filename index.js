@@ -1,9 +1,8 @@
-"use strict"
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,6 +26,11 @@ mongoose
 .connect(db)
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.log(err));
+
+// passport middleware
+app.use(passport.initialize());
+
+require('./config/passport')(passport);
 
 app.get('/', (req, res) => {
   res.send('Hello world');
