@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const morgan = require('morgan');
+const errorhandler = require('errorhandler')
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({extended: false}));
+  
+app.use(morgan('combined'));
 
 // mongodb config
 const db = require('./config/keys').mongoURI;
