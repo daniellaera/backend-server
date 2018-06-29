@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({extended: false}));
   
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 // mongodb config
 const db = require('./config/keys').mongoURI;

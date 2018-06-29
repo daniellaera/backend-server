@@ -9,6 +9,10 @@ const passport = require('passport');
 //load model
 const User = require('../../models/User');
 
+router.get('/', (req, res, next) => {
+    User.find().catch(next).then(results => res.send(results));
+});
+
 // register user
 router.post('/register', (req, res) => {
     bcrypt.hash(req.body.password, 10, (err, hash) => {
