@@ -49,11 +49,11 @@ router.post('/login', (req, res) => {
                 const JWTToken = jwt.sign({
                     email: user.email,
                     _id: user._id
-                  }, 'secret', { expiresIn: '2h' });
-                   return res.status(200).json({
-                     success: 'Welcome to the JWT Auth',
-                     token: JWTToken
-                   });
+                }, 'secret', { expiresIn: '2h' });
+                return res.status(200).json({
+                    success: 'Welcome to the JWT Auth',
+                    token: JWTToken
+                });
             }
             return res.status(400).json({ failed: 'Unauthorized Access' });
         });

@@ -1,18 +1,22 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const morgan = require('morgan');
-const errorhandler = require('errorhandler')
+const errorhandler = require('errorhandler');
+const cors = require('cors');
 
-const PORT = process.env.PORT || 3000;
+//const PORT = process.env.PORT || 3000;
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({extended: false}));
-  
+app.use(cookieParser());
+app.use(cors());
+
 app.use(morgan('dev'));
 
 // mongodb config
@@ -22,8 +26,9 @@ const course = require('./routes/api/course');
 const users = require('./routes/api/users');
 
 // use route
-app.use('/course', course);
-app.use('/users', users);
+app.use('/api', users);
+app.use('/api', course);
+
 
 // DB connection
 mongoose
@@ -40,6 +45,6 @@ app.get('/', (req, res) => {
   res.send('Hello world');
 });
 
-app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
+//app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 
 module.exports = app;
