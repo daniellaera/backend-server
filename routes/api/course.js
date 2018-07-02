@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
 router.post('/update/:id', (req, res) => {
   Course.findById(req.params.id, (err, course) => {
     if (!course)
-    return next(new Error('Could not load Document'));
+      return next(new Error('Could not load Document'));
     else {
       course.course_name = req.body.course_name;
       course.course_price = req.body.course_price;
@@ -33,9 +33,9 @@ router.post('/update/:id', (req, res) => {
       course.save().then(course => {
         res.json('Successfully Updated');
       })
-      .catch(err => {
-        res.status(400).send("unable to update the database");
-      });
+        .catch(err => {
+          res.status(400).send("unable to update the database");
+        });
     }
   });
 });
