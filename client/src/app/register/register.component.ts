@@ -16,11 +16,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private auth: AuthenticationService) { }
 
-  ngOnInit() {
-    const intervals$ = interval(1000);
-    intervals$.subscribe(val => console.log('stream 1 =>' + val));
-    intervals$.subscribe(val => console.log('stream 2 =>' + val));
-  }
+  ngOnInit() {}
 
   register() {
     this.auth.register(this.credentials).subscribe(() => { }, (err) => {

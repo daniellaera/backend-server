@@ -22,13 +22,9 @@ app.use(morgan('dev'));
 // mongodb config
 const db = require('./config/keys').mongoURI;
 
-const course = require('./routes/api/course');
-const users = require('./routes/api/users');
-
 // use route
-app.use('/api', users);
-app.use('/api', course);
-
+const configure_routes = require("./routes/index");
+configure_routes(app);
 
 // DB connection
 mongoose

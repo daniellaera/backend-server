@@ -53,7 +53,7 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'register', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'register'|'users/profile', user?: TokenPayload): Observable<any> {
     let base;
     if (method === 'post') {
       base = this.http.post(`/api/${type}`, user);
@@ -69,11 +69,15 @@ export class AuthenticationService {
         return data;
       })
     );
-
     return request;
   }
 
   public register(user: TokenPayload): Observable<any> {
     return this.request('post', 'register', user);
   }
+
+  public profile(): Observable<any> {
+    return this.request('get', 'users/profile');
+  }
+  
 }
